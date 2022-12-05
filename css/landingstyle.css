@@ -1,0 +1,111 @@
+body {
+  background-image: url('./../assets/cover.png');
+  background-repeat: no-repeat;
+  font-family: 'Arial';
+}
+
+.body-block {
+  width: 45%;
+  position: absolute;
+  top: 530px;
+  left: 820px;
+}
+.about {
+  color: white;
+  font-size: 20px;
+}
+
+.start {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+  left: 30%;
+  top: 160px;
+}
+
+.start:hover {
+  background-color: white;
+  color: black;
+}
+
+.start-app {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+  left: 60%;
+  top: 830px;
+  visibility: hidden;
+}
+
+.start-app:hover {
+  background-color: white;
+  color: black;
+}
+
+#calendar {
+  z-index: 3;
+  position: relative;
+  width: 750px;
+  height: 600px;
+  margin-right: 260px;
+  top: 160px;
+  float: right;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  visibility: hidden;
+}
+
+.toastui-calendar-popup-container {
+  position: absolute;
+  left: -10px !important;
+}
+
+.toastui-calendar-timegrid-now-indicator-today {
+  border-top: 3px dotted white !important;
+}
+
+.toastui-calendar-day-view-day-names {
+  display: none !important;
+}
+
+.toastui-calendar-panel {
+  height: 100% !important;
+  opacity: 80%;
+}
+
+.toastui-calendar-day-view {
+  z-index: 2;
+  background-color: rgba(18, 25, 42, 0.8) !important;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.toastui-calendar-template-time {
+  font-size: 14px;
+}
+
+.toastui-calendar-grid-selection-label {
+  color: white !important;
+}
+
+.toastui-calendar-event-time {
+  border-left-color: rgba(7, 34, 58, 0.9) !important;
+  border-radius: 7px !important;
+}
+
+.toastui-calendar-gridline-half {
+  border-bottom: 1px solid rgb(255, 255, 255, 0.2) !important;
+}
+
+.toastui-calendar-grid-selection {
+  border-radius: 7px !important;
+}

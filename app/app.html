@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alter Ego.</title>
+
+    <script src="./../node_modules/tui-time-picker/dist/tui-time-picker.js"></script>
+    <script src="./../node_modules/tui-date-picker/dist/tui-date-picker.js"></script>
+    <script src="./../node_modules/@toast-ui/calendar/dist/toastui-calendar.js"></script>
+    <script src="./../cover.js"></script>
+    <script src="./../js/app.js" defer></script>
+
+    <link rel="stylesheet" href="./../node_modules/@toast-ui/calendar/dist/toastui-calendar.css" />
+    <link rel="stylesheet" href="./../node_modules/tui-time-picker/dist/tui-time-picker.css" />
+    <link rel="stylesheet" href="./../node_modules/tui-date-picker/dist/tui-date-picker.css" />
+    <link rel="stylesheet" href="./../css/app.css" />
+  </head>
+
+  <body onkeypress="showWorkDisplay()">
+    <img src="./../assets/idle-cutout.png" class="bgImg" alt="An astronaut looking out of a window" />
+    <video src="./../assets/health.mp4" autoplay loop muted playsinline class="bgVid"></video>
+
+    <iframe
+      width="100%"
+      height="100%"
+      src="https://www.youtube.com/embed/dL82kbg2pbo?autoplay=1&mute=1"
+      allow="autoplay">
+    </iframe>
+
+    <div class="health-bar">
+      <img src="./../assets/heart-icon.png" alt="health icon" />
+      <div class="health-level"></div>
+    </div>
+
+    <div class="popup">
+      <h1>Start Task</h1>
+      <p class="start-time">Start Time:</p>
+      <p class="end-time">End Time:</p>
+      <button class="button-yes" onclick="popupYes()">Yes</button>
+      <button class="button-no" onclick="popupNo()">No</button>
+      <p class="info">&#9873; Skipping this task will reduce your health by xx%</p>
+    </div>
+
+    <div class="clock">
+      <p id="time"></p>
+    </div>
+
+    <div id="calendar"></div>
+    <button class="start-button" onclick="startApp()">Start</button>
+
+    <div class="mission-info">
+      <p class="task-title">Next Task:</p>
+      <p class="task-countdown">Starts in:</p>
+      <p class="spacecraft-health-title">Spacecraft Health</p>
+      <img src="./../assets/work-icon.png" alt="tools icon" />
+      <div class="work-bar">
+        <div class="work-level"></div>
+      </div>
+      <p class="time-to-end">Voyage ends in:</p>
+    </div>
+    <button class="finish" onclick="dayEnded()">Finish Early</button>
+    <div class="restart" onclick="location.href = './../index.html';">
+      <img src="./../assets/restart-icon.png" width="100%" alt="Restart" />
+    </div>
+    <div class="task-transition"></div>
+  </body>
+</html>

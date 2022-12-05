@@ -1,0 +1,335 @@
+body {
+  font-family: 'Arial';
+  background-color: black;
+  overflow: hidden;
+}
+
+@keyframes expand {
+  0% {
+    height: 0px;
+    opacity: 50%;
+  }
+}
+
+#calendar {
+  z-index: 3;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-right: 100px;
+  top: 160px;
+  float: right;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: expand 2s;
+}
+
+/* Overriding library's dynamic CSS */
+.toastui-calendar-popup-container {
+  position: absolute;
+  left: -10px !important;
+}
+
+.toastui-calendar-timegrid-now-indicator-today {
+  border-top: 3px dotted white !important;
+}
+
+.toastui-calendar-day-view-day-names {
+  display: none !important;
+}
+
+.toastui-calendar-panel {
+  height: 100% !important;
+  opacity: 80%;
+}
+
+.toastui-calendar-day-view {
+  z-index: 2;
+  background-color: rgba(0, 25, 42, 0.75) !important;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.toastui-calendar-template-time {
+  font-size: 14px;
+}
+
+.toastui-calendar-grid-selection-label {
+  color: white !important;
+}
+
+.toastui-calendar-event-time {
+  border-left-color: rgba(7, 34, 58, 0.9) !important;
+  border-radius: 7px !important;
+}
+
+.toastui-calendar-gridline-half {
+  border-bottom: 1px solid rgb(255, 255, 255, 0.2) !important;
+}
+
+.toastui-calendar-grid-selection {
+  border-radius: 7px !important;
+}
+
+.health-bar {
+  z-index: 1;
+  position: absolute;
+  top: 350px;
+  left: 30%;
+  height: 12px;
+  width: 300px;
+  background-color: rgba(0, 25, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+}
+
+.health-bar img {
+  width: 17px;
+  position: absolute;
+  left: -24px;
+  top: -2px;
+}
+
+.health-level {
+  background-color: #db4437;
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.work-bar {
+  height: 12px;
+  width: 325px;
+  float: right;
+  background-color: rgba(0, 25, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  margin-top: 4px;
+  margin-bottom: 30px;
+}
+
+.work-level {
+  background-color: #f4b400;
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.bgImg {
+  z-index: 0;
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  min-height: 100%;
+  display: inline;
+  top: 0;
+  left: 0;
+}
+
+.bgVid {
+  z-index: 0;
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  min-height: 100%;
+  display: inline;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+iframe {
+  z-index: -10;
+  position: absolute;
+  top: 0;
+}
+
+.clock {
+  z-index: 2;
+  position: absolute;
+  box-sizing: border-box;
+  width: 400px;
+  right: 110px;
+  top: 60px;
+  padding: 20px;
+  background-color: rgba(0, 25, 42, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: expand 2s;
+}
+
+#time {
+  color: white;
+  font-size: 40px;
+  margin: 0px;
+}
+
+.mission-info {
+  z-index: 2;
+  position: absolute;
+  box-sizing: border-box;
+  width: 400px;
+  right: 110px;
+  top: 580px;
+  padding: 20px;
+  background-color: rgba(0, 25, 42, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: expand 2s;
+}
+
+.mission-info img {
+  width: 20px;
+  display: inline-block;
+  position: absolute;
+}
+
+.task-title {
+  margin: 0px;
+}
+
+.task-countdown {
+  margin-top: 8px;
+}
+
+.spacecraft-health-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.time-to-end {
+  margin-bottom: 0px;
+}
+
+.popup {
+  visibility: hidden;
+  z-index: 3;
+  position: absolute;
+  top: 35%;
+  left: 40%;
+  padding: 40px;
+  padding-bottom: 10px;
+  background-color: rgba(0, 25, 42, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.popup button {
+  z-index: 3;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 20px;
+  width: 40%;
+  padding: 10px;
+  background-color: rgba(0, 25, 42, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.popup button:hover {
+  background-color: rgba(123, 250, 235, 0.2);
+}
+
+.start-time {
+  margin: 4px;
+  font-weight: bold;
+}
+.end-time {
+  margin: 4px;
+  font-weight: bold;
+}
+
+.info {
+  color: #e2fcfd;
+  opacity: 70%;
+}
+
+.popup h1 {
+  margin-top: 0px;
+}
+.finish {
+  z-index: 2;
+  position: absolute;
+  box-sizing: border-box;
+  width: 330px;
+  right: 180px;
+  top: 800px;
+  padding: 20px;
+  background-color: rgba(0, 25, 42, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: white;
+  font-size: 16px;
+  animation: expand 2s;
+}
+
+.finish:hover {
+  background-color: rgba(123, 250, 235, 0.2);
+}
+
+.restart {
+  z-index: 2;
+  position: absolute;
+  width: 35px;
+  padding: 10px;
+  top: 800px;
+  right: 105px;
+  background-color: rgba(0, 25, 42, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: expand 2s;
+}
+
+.restart:hover {
+  background-color: rgba(123, 250, 235, 0.2);
+}
+
+.restart img {
+  opacity: 80%;
+}
+.restart img:hover {
+  opacity: 100%;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+
+.task-transition {
+  z-index: 1;
+  position: absolute;
+  opacity: 0%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.fade-in-animation {
+  animation-name: fade-in;
+  animation-duration: 5s;
+}

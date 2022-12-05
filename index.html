@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alter Ego.</title>
+
+    <script src="node_modules/tui-time-picker/dist/tui-time-picker.js"></script>
+    <script src="node_modules/tui-date-picker/dist/tui-date-picker.js"></script>
+    <script src="node_modules/@toast-ui/calendar/dist/toastui-calendar.js"></script>
+    <script src="js/landing.js" defer></script>
+
+    <link rel="stylesheet" href="node_modules/@toast-ui/calendar/dist/toastui-calendar.css" />
+    <link rel="stylesheet" href="node_modules/tui-time-picker/dist/tui-time-picker.css" />
+    <link rel="stylesheet" href="node_modules/tui-date-picker/dist/tui-date-picker.css" />
+    <link rel="stylesheet" href="css/landingstyle.css" />
+  </head>
+  <body>
+    <div class="body-block">
+      <p class="about">
+        In a parallel universe, you are an astronaut on a mission. But quantum entanglement causes your productivity and
+        health to be unconditionally linked.<br /><br />
+        Can you help your alter ego in their interstellar voyage?
+      </p>
+      <button class="start" onclick="startScheduling()">Start your day</button>
+    </div>
+    <div id="calendar"></div>
+    <button class="start-app" onclick="startApp()">Confirm Schedule</button>
+  </body>
+</html>
