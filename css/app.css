@@ -75,7 +75,8 @@ body {
 .health-bar {
   z-index: 1;
   position: absolute;
-  top: 350px;
+  /* top: 350px; */
+  top: 35%;
   left: 30%;
   height: 12px;
   width: 300px;
@@ -96,6 +97,33 @@ body {
   height: 100%;
   width: 100%;
   border-radius: 6px;
+}
+
+@media (max-width: 1600px) {
+  .health-bar {
+    top: 35%;
+    left: 30%;
+  }
+}
+@media (max-width: 1500px) {
+  .health-bar {
+    top: 35%;
+    left: 27%;
+  }
+}
+@media (max-width: 1250px) {
+  .health-bar {
+    top: 35%;
+    left: 23%;
+  }
+}
+@media (max-width: 1050px) {
+  .health-bar {
+    z-index: 4;
+    left: auto;
+    right: 155px;
+    top: 720px;
+  }
 }
 
 .work-bar {
@@ -164,7 +192,7 @@ iframe {
 
 #time {
   color: white;
-  font-size: 40px;
+  font-size: 32px;
   margin: 0px;
 }
 
@@ -211,10 +239,10 @@ iframe {
 
 .popup {
   visibility: hidden;
-  z-index: 3;
+  z-index: 5;
   position: absolute;
   top: 35%;
-  left: 40%;
+  left: 30%;
   padding: 40px;
   padding-bottom: 10px;
   background-color: rgba(0, 25, 42, 0.7);
@@ -222,6 +250,12 @@ iframe {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
+}
+
+@media (max-width: 900px) {
+  .popup {
+    left: 10%;
+  }
 }
 
 .popup button {
@@ -332,4 +366,34 @@ iframe {
 .fade-in-animation {
   animation-name: fade-in;
   animation-duration: 5s;
+}
+@media (max-width: 550px) {
+  #calendar {
+    margin-right: 5%;
+    width: 90%;
+  }
+  .mission-info {
+    right: 5%;
+    width: 90%;
+  }
+  .clock {
+    right: 5%;
+    width: 90%;
+  }
+  .finish {
+    left: 5%;
+    width: 70%;
+  }
+  .restart {
+    right: 5%;
+  }
+
+  .health-bar {
+    width: 70%;
+    right: 14%;
+  }
+  .work-bar {
+    width: 90%;
+    right: 6%;
+  }
 }

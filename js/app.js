@@ -15,6 +15,12 @@ let healthScore = 1;
 let schedule = [];
 let debug = false;
 
+let idleMediaQueryShrink = window.matchMedia('(max-width: 1600px)');
+let idleMediaQueryTablet = window.matchMedia('(max-width: 1500px)');
+let idleMediaQueryTabletSmall = window.matchMedia('(max-width: 1250px)');
+let idleMediaQueryMobile = window.matchMedia('(max-width: 1050px)');
+let idleMediaQueryMobileSmall = window.matchMedia('(max-width: 550px)');
+
 if (debug == false) {
   totalWorkEvents = window.opener.totalWorkEvents;
   totalHealthEvents = window.opener.totalHealthEvents;
@@ -135,6 +141,11 @@ function startTime() {
 
   document.querySelector('.time-to-end').innerText = 'Voyage ends in: ' + msToTime(endTime - Date.parse(today));
   if (endTime <= Date.parse(today) || (!currentTask && !schedule.length)) if (!debug) dayEnded();
+
+  if (!currentTaskType) setIdleHealthBar();
+  else if (currentTaskType == 'work') setHealthBarDuringWork();
+  else if (currentTaskType == 'health') setHealthBarDuringHealth();
+
   setTimeout(startTime, 1000);
 }
 
@@ -234,8 +245,32 @@ function showIdleDisplay() {
   triggerFadeInAnimation();
   document.querySelector('.bgImg').style.visibility = 'visible';
   document.querySelector('.bgVid').style.visibility = 'hidden';
-  document.querySelector('.health-bar').style.top = '350px';
-  document.querySelector('.health-bar').style.left = '30%';
+  setIdleHealthBar();
+}
+
+function setIdleHealthBar() {
+  if (idleMediaQueryMobileSmall.matches) {
+    document.querySelector('.health-bar').style.zIndex = '4';
+    document.querySelector('.health-bar').style.left = 'auto';
+    document.querySelector('.health-bar').style.right = '12%';
+    document.querySelector('.health-bar').style.top = '720px';
+  } else if (idleMediaQueryMobile.matches) {
+    document.querySelector('.health-bar').style.zIndex = '4';
+    document.querySelector('.health-bar').style.left = 'auto';
+    document.querySelector('.health-bar').style.right = '155px';
+    document.querySelector('.health-bar').style.top = '720px';
+  } else {
+    document.querySelector('.health-bar').style.top = '35%';
+    if (idleMediaQueryTabletSmall.matches) {
+      document.querySelector('.health-bar').style.left = '23%';
+    } else if (idleMediaQueryTablet.matches) {
+      document.querySelector('.health-bar').style.left = '27%';
+    } else if (idleMediaQueryShrink.matches) {
+      document.querySelector('.health-bar').style.left = '30%';
+    } else {
+      document.querySelector('.health-bar').style.left = '30%';
+    }
+  }
 }
 
 function showWorkDisplay() {
@@ -244,8 +279,33 @@ function showWorkDisplay() {
   let videoDisplay = document.querySelector('.bgVid');
   videoDisplay.src = './../assets/work.mp4';
   videoDisplay.style.visibility = 'visible';
-  document.querySelector('.health-bar').style.top = '100px';
-  document.querySelector('.health-bar').style.left = '450px';
+  setHealthBarDuringWork();
+}
+
+function setHealthBarDuringWork() {
+  if (idleMediaQueryMobileSmall.matches) {
+    document.querySelector('.health-bar').style.zIndex = '4';
+    document.querySelector('.health-bar').style.left = 'auto';
+    document.querySelector('.health-bar').style.right = '12%';
+    document.querySelector('.health-bar').style.top = '720px';
+  } else if (idleMediaQueryMobile.matches) {
+    document.querySelector('.health-bar').style.zIndex = '4';
+    document.querySelector('.health-bar').style.left = 'auto';
+    document.querySelector('.health-bar').style.right = '155px';
+    document.querySelector('.health-bar').style.top = '720px';
+  } else {
+    document.querySelector('.health-bar').style.top = '35%';
+    if (idleMediaQueryTabletSmall.matches) {
+      document.querySelector('.health-bar').style.top = '10%';
+      document.querySelector('.health-bar').style.left = '17%';
+    } else if (idleMediaQueryTablet.matches) {
+      document.querySelector('.health-bar').style.top = '10%';
+      document.querySelector('.health-bar').style.left = '20%';
+    } else {
+      document.querySelector('.health-bar').style.top = '10%';
+      document.querySelector('.health-bar').style.left = '25%';
+    }
+  }
 }
 
 function showHealthDisplay() {
@@ -254,8 +314,30 @@ function showHealthDisplay() {
   let videoDisplay = document.querySelector('.bgVid');
   videoDisplay.src = './../assets/health.mp4';
   videoDisplay.style.visibility = 'visible';
-  document.querySelector('.health-bar').style.top = '20px';
-  document.querySelector('.health-bar').style.left = '670px';
+  setHealthBarDuringHealth();
+}
+
+function setHealthBarDuringHealth() {
+  if (idleMediaQueryMobileSmall.matches) {
+    document.querySelector('.health-bar').style.zIndex = '4';
+    document.querySelector('.health-bar').style.left = 'auto';
+    document.querySelector('.health-bar').style.right = '12%';
+    document.querySelector('.health-bar').style.top = '720px';
+  } else if (idleMediaQueryMobile.matches) {
+    document.querySelector('.health-bar').style.zIndex = '4';
+    document.querySelector('.health-bar').style.left = 'auto';
+    document.querySelector('.health-bar').style.right = '155px';
+    document.querySelector('.health-bar').style.top = '720px';
+  } else {
+    document.querySelector('.health-bar').style.top = '35%';
+    if (idleMediaQueryTabletSmall.matches) {
+      document.querySelector('.health-bar').style.top = '3%';
+      document.querySelector('.health-bar').style.left = '30%';
+    } else {
+      document.querySelector('.health-bar').style.top = '3%';
+      document.querySelector('.health-bar').style.left = '40%';
+    }
+  }
 }
 
 function triggerFadeInAnimation() {
@@ -287,5 +369,7 @@ function dayEnded() {
 
 //TODO: add reflections in idle mode
 //desktop notif
-//overlapping tasks
-//crop idle image to match screen size?
+//fix health bar animation in that ending
+//remove debug=false
+//must have atleast one task
+//FIX WEDNESDAY

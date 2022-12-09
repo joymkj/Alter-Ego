@@ -1,4 +1,3 @@
-console.log('fsasd');
 const Calendar = tui.Calendar;
 const container = document.getElementById('calendar');
 let eventsID = 0;
