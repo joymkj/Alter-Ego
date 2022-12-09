@@ -1,6 +1,7 @@
 const Calendar = tui.Calendar;
 const container = document.getElementById('calendar');
 let eventsID = 0;
+let emptyCalendar = true;
 window.totalWorkEvents = 0;
 window.totalHealthEvents = 0;
 window.workBarDecrement = 0;
@@ -77,6 +78,7 @@ calendar.setTheme({
 
 calendar.on('beforeCreateEvent', (eventObj) => {
   eventObj.id = eventsID;
+  emptyCalendar = false;
   calendar.createEvents([
     {
       ...eventObj,
