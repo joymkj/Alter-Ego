@@ -420,7 +420,9 @@ iframe {
   background-repeat: no-repeat;
 }
 
-.switch input[type='checkbox']:hover,
+.switch input[type='checkbox']:hover {
+  background: url('./../assets/a11y-hover.png');
+}
 .switch input[type='checkbox']:checked {
   background: url('./../assets/a11y-on.png');
 }

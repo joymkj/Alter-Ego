@@ -13,7 +13,7 @@ let endTime = 0;
 let workScore = 1;
 let healthScore = 1;
 let schedule = [];
-let debug = false;
+let debug = true;
 
 let idleMediaQueryShrink = window.matchMedia('(max-width: 1600px)');
 let idleMediaQueryTablet = window.matchMedia('(max-width: 1500px)');
@@ -365,6 +365,26 @@ function dayEnded() {
   }
 
   document.querySelector('.time-to-end').innerText = 'Mission Over';
+}
+
+function accessibilityToggle() {
+  let A11yChecked = document.querySelector(".switch input[type='checkbox']").checked;
+  if (A11yChecked) {
+    console.log('here');
+    document.querySelector('#calendar').style.backgroundColor = 'rgba(0, 13, 21, 1)';
+    document.querySelector('.clock').style.backgroundColor = 'rgba(0, 17, 28, 1)';
+    document.querySelector('.mission-info').style.backgroundColor = 'rgba(0, 17, 28, 1)';
+    document.querySelector('.popup').style.backgroundColor = 'rgba(0, 17, 28, 1)';
+    document.querySelector('.finish').style.backgroundColor = 'rgba(0, 17, 28, 1)';
+    document.querySelector('.restart').style.backgroundColor = 'rgba(0, 17, 28, 1)';
+  } else {
+    document.querySelector('#calendar').style.backgroundColor = 'rgba(0, 25, 42, 0.75)';
+    document.querySelector('.clock').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
+    document.querySelector('.mission-info').style.backgroundColor = 'rgba(0, 25, 42, 0.6))';
+    document.querySelector('.popup').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
+    document.querySelector('.finish').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
+    document.querySelector('.restart').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
+  }
 }
 
 //TODO: add reflections in idle mode
