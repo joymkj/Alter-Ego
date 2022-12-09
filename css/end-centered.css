@@ -47,7 +47,7 @@ iframe {
   padding: 20px;
   text-align: center;
 
-  background: rgba(9, 0, 32, 0.5);
+  background: rgba(9, 0, 32, 0.7);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -82,7 +82,7 @@ iframe {
 .health-info {
   color: rgb(248, 38, 38);
   text-align: left;
-  margin-left: 10%;
+  margin-left: 30%;
   font-weight: bold;
   margin-bottom: 0px;
 }
@@ -90,9 +90,18 @@ iframe {
 .work-info {
   color: rgb(255, 208, 0);
   text-align: left;
-  margin-left: 10%;
+  margin-left: 30%;
   font-weight: bold;
   margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .health-info {
+    margin-left: 10%;
+  }
+  .work-info {
+    margin-left: 10%;
+  }
 }
 
 .remind {

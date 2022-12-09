@@ -4,32 +4,21 @@ let workEventsCompleted = 0;
 let healthEventsCompleted = 0;
 let currentTaskType = null;
 let currentTask = null;
-
-let totalWorkEvents = 0;
-let totalHealthEvents = 0;
-let workBarDecrement = 0;
-let healthBarDecrement = 0;
-let endTime = 0;
 let workScore = 1;
 let healthScore = 1;
-let schedule = [];
-let debug = false; //for internal testing
-
+let totalWorkEvents = window.opener.totalWorkEvents;
+let totalHealthEvents = window.opener.totalHealthEvents;
+let workBarDecrement = window.opener.workBarDecrement;
+let healthBarDecrement = window.opener.healthBarDecrement;
+let endTime = window.opener.endTime;
+let schedule = window.opener.schedule;
 let idleMediaQueryShrink = window.matchMedia('(max-width: 1600px)');
 let idleMediaQueryTablet = window.matchMedia('(max-width: 1500px)');
 let idleMediaQueryTabletSmall = window.matchMedia('(max-width: 1250px)');
 let idleMediaQueryMobile = window.matchMedia('(max-width: 1050px)');
 let idleMediaQueryMobileSmall = window.matchMedia('(max-width: 550px)');
 
-if (debug == false) {
-  totalWorkEvents = window.opener.totalWorkEvents;
-  totalHealthEvents = window.opener.totalHealthEvents;
-  workBarDecrement = window.opener.workBarDecrement;
-  healthBarDecrement = window.opener.healthBarDecrement;
-  endTime = window.opener.endTime;
-  schedule = window.opener.schedule;
-}
-
+//setting options for the calendar
 const options = {
   defaultView: 'day',
   week: {
@@ -37,8 +26,6 @@ const options = {
     eventView: ['time'],
   },
   isReadOnly: true,
-  // useFormPopup: true,
-  // useDetailPopup: true,
   timezone: {
     zones: [
       {
@@ -64,6 +51,7 @@ const options = {
 
 const calendar = new Calendar(container, options);
 
+//setting calendar style
 calendar.setTheme({
   common: {
     backgroundColor: 'rgba(7, 34, 58, 1)',
@@ -96,14 +84,13 @@ calendar.setTheme({
   },
 });
 
+//start app by populating calendar and playing default view
 calendar.createEvents(schedule);
 startTime();
 showIdleDisplay();
+window.opener.close();
 
-if (debug == false) {
-  window.opener.close();
-}
-
+//performs all time calculations and time-based tasks
 function startTime() {
   const today = new Date();
   let hours = today.getHours();
@@ -140,7 +127,7 @@ function startTime() {
   }
 
   document.querySelector('.time-to-end').innerText = 'Voyage ends in: ' + msToTime(endTime - Date.parse(today));
-  if (endTime <= Date.parse(today) || (!currentTask && !schedule.length)) if (!debug) dayEnded();
+  if (endTime <= Date.parse(today) || (!currentTask && !schedule.length)) dayEnded();
 
   if (!currentTaskType) setIdleHealthBar();
   else if (currentTaskType == 'work') setHealthBarDuringWork();
@@ -149,6 +136,7 @@ function startTime() {
   setTimeout(startTime, 1000);
 }
 
+//helper function to handle time calculations
 function msToTime(ms) {
   let seconds = Math.floor((ms / 1000) % 60);
   let minutes = Math.floor((ms / (1000 * 60)) % 60);
@@ -163,12 +151,14 @@ function msToTime(ms) {
   else return seconds + 's';
 }
 
+//when a task begins
 function startTask(task) {
   currentTask = task;
   showPopup(task);
   console.log('Task Started: ' + currentTask.title);
 }
 
+//when a task ends
 function endTask() {
   console.log('task Ended: ' + currentTask.title);
   document.querySelector('.finish').innerText = 'End Day Early';
@@ -181,6 +171,7 @@ function endTask() {
   showIdleDisplay();
 }
 
+//to display the popup when a task begins
 function showPopup(task) {
   document.querySelector('.popup').style.visibility = 'visible';
   if (task) {
@@ -196,6 +187,7 @@ function showPopup(task) {
   }
 }
 
+//calculates loss of health or work points
 function getDecrement(task) {
   currentTask = task;
   if (task.calendarId == 'cal-work') {
@@ -207,6 +199,7 @@ function getDecrement(task) {
   }
 }
 
+//when clicked yes in the popup
 function popupYes() {
   console.log('Task Accepted');
   schedule.shift();
@@ -222,6 +215,7 @@ function popupYes() {
   }
 }
 
+//when clicked no in the popup
 function popupNo() {
   console.log('Task Declined');
   schedule.shift();
@@ -230,6 +224,7 @@ function popupNo() {
   endTask();
 }
 
+//reduces health or work points when a task is declined
 function reduceHealth() {
   let scoreBar = null;
   if (currentTaskType == 'work') {
@@ -243,6 +238,7 @@ function reduceHealth() {
   }
 }
 
+//visuals during no task
 function showIdleDisplay() {
   triggerFadeInAnimation();
   document.querySelector('.bgImg').style.visibility = 'visible';
@@ -250,6 +246,7 @@ function showIdleDisplay() {
   setIdleHealthBar();
 }
 
+//to handle responsive cases
 function setIdleHealthBar() {
   if (idleMediaQueryMobileSmall.matches) {
     document.querySelector('.health-bar').style.zIndex = '4';
@@ -275,6 +272,7 @@ function setIdleHealthBar() {
   }
 }
 
+//visuals during work task
 function showWorkDisplay() {
   triggerFadeInAnimation();
   document.querySelector('.bgImg').style.visibility = 'hidden';
@@ -284,6 +282,7 @@ function showWorkDisplay() {
   setHealthBarDuringWork();
 }
 
+//to handle responsive cases during work task
 function setHealthBarDuringWork() {
   if (idleMediaQueryMobileSmall.matches) {
     document.querySelector('.health-bar').style.zIndex = '4';
@@ -310,6 +309,7 @@ function setHealthBarDuringWork() {
   }
 }
 
+//visuals during a health task
 function showHealthDisplay() {
   triggerFadeInAnimation();
   document.querySelector('.bgImg').style.visibility = 'hidden';
@@ -319,6 +319,7 @@ function showHealthDisplay() {
   setHealthBarDuringHealth();
 }
 
+//to handle responsive cases during health task
 function setHealthBarDuringHealth() {
   if (idleMediaQueryMobileSmall.matches) {
     document.querySelector('.health-bar').style.zIndex = '4';
@@ -342,12 +343,14 @@ function setHealthBarDuringHealth() {
   }
 }
 
+//to show the fade from black transitions
 function triggerFadeInAnimation() {
   document.querySelector('.task-transition').classList.remove('fade-in-animation');
   document.querySelector('.task-transition').offsetWidth;
   document.querySelector('.task-transition').classList.add('fade-in-animation');
 }
 
+//when the day/task end button is clicked
 function dayEnded() {
   if (totalHealthEvents) healthScore = healthEventsCompleted / totalHealthEvents;
   if (totalWorkEvents) workScore = workEventsCompleted / totalWorkEvents;
@@ -358,7 +361,7 @@ function dayEnded() {
 
   if (document.querySelector('.finish').innerText == 'End Day Early') {
     if (healthScore >= 0.5 && workScore >= 0.5) {
-      window.location.href = 'end-good.html';
+      window.location.href = 'end-success.html';
     } else if (healthScore < 0.5 && workScore < 0.5) {
       window.location.href = 'end-low-health-work.html';
     } else if (healthScore < 0.5) {
@@ -373,6 +376,7 @@ function dayEnded() {
   document.querySelector('.time-to-end').innerText = 'Mission Over';
 }
 
+//when the accessibility toggle is clicked
 function accessibilityToggle() {
   let A11yChecked = document.querySelector(".switch input[type='checkbox']").checked;
   if (A11yChecked) {

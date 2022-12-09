@@ -8,6 +8,7 @@ window.healthBarDecrement = 0;
 window.endTime = 0;
 window.schedule = [];
 
+//settings for the calendar
 const options = {
   defaultView: 'day',
   week: {
@@ -41,6 +42,7 @@ const options = {
 
 const calendar = new Calendar(container, options);
 
+//calendar style settings
 calendar.setTheme({
   common: {
     backgroundColor: 'rgba(7, 34, 58, 1)',
@@ -73,8 +75,7 @@ calendar.setTheme({
   },
 });
 
-// calendar.createEvents(schedule);
-
+//when new events are added
 calendar.on('beforeCreateEvent', (eventObj) => {
   eventObj.id = eventsID;
   updateConfirmButton();
@@ -88,24 +89,29 @@ calendar.on('beforeCreateEvent', (eventObj) => {
   calendar.clearGridSelections();
 });
 
+//when an events is updated in calendar
 calendar.on('beforeUpdateEvent', function ({ event, changes }) {
   const { id, calendarId } = event;
   calendar.updateEvent(id, calendarId, changes);
   console.log('Event Updated: ' + event);
 });
 
+//when an event is deleted from calendar
 calendar.on('beforeDeleteEvent', (eventObj) => {
   calendar.deleteEvent(eventObj.id, eventObj.calendarId);
 });
 
+//when start button is clicked
 function startScheduling() {
   document.querySelector('#calendar').style.visibility = 'visible';
 }
 
+//when the calendar is not empty, the Confirm Schedule button shows
 function updateConfirmButton() {
   document.querySelector('.start-app').style.visibility = 'visible';
 }
 
+//starts the app in new tab
 function startApp() {
   schedule = [];
   for (let i = 0; i <= eventsID; i++) {
