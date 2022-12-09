@@ -376,7 +376,6 @@ function dayEnded() {
 function accessibilityToggle() {
   let A11yChecked = document.querySelector(".switch input[type='checkbox']").checked;
   if (A11yChecked) {
-    console.log('here');
     document.querySelector('#calendar').style.backgroundColor = 'rgba(0, 13, 21, 1)';
     document.querySelector('.clock').style.backgroundColor = 'rgba(0, 17, 28, 1)';
     document.querySelector('.mission-info').style.backgroundColor = 'rgba(0, 17, 28, 1)';
@@ -384,7 +383,7 @@ function accessibilityToggle() {
     document.querySelector('.finish').style.backgroundColor = 'rgba(0, 17, 28, 1)';
     document.querySelector('.restart').style.backgroundColor = 'rgba(0, 17, 28, 1)';
   } else {
-    document.querySelector('#calendar').style.backgroundColor = 'rgba(0, 25, 42, 0.75)';
+    document.querySelector('#calendar').style.backgroundColor = 'transparent';
     document.querySelector('.clock').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
     document.querySelector('.mission-info').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
     document.querySelector('.popup').style.backgroundColor = 'rgba(0, 25, 42, 0.85)';
@@ -392,7 +391,3 @@ function accessibilityToggle() {
     document.querySelector('.restart').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
   }
 }
-
-//TODO: add reflections in idle mode
-//desktop notif
-//remove debug=false
