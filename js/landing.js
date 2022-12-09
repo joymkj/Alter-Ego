@@ -104,6 +104,7 @@ calendar.on('beforeDeleteEvent', (eventObj) => {
 //when start button is clicked
 function startScheduling() {
   document.querySelector('#calendar').style.visibility = 'visible';
+  document.querySelector('.body-block').style.visibility = 'hidden';
 }
 
 //when the calendar is not empty, the Confirm Schedule button shows
