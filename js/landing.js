@@ -1,7 +1,6 @@
 const Calendar = tui.Calendar;
 const container = document.getElementById('calendar');
 let eventsID = 0;
-let emptyCalendar = true;
 window.totalWorkEvents = 0;
 window.totalHealthEvents = 0;
 window.workBarDecrement = 0;
@@ -78,7 +77,7 @@ calendar.setTheme({
 
 calendar.on('beforeCreateEvent', (eventObj) => {
   eventObj.id = eventsID;
-  emptyCalendar = false;
+  updateConfirmButton();
   calendar.createEvents([
     {
       ...eventObj,
@@ -99,15 +98,11 @@ calendar.on('beforeDeleteEvent', (eventObj) => {
   calendar.deleteEvent(eventObj.id, eventObj.calendarId);
 });
 
-let replacer = function (key, value) {
-  if (this[key] instanceof Date) {
-    return this[key].toString();
-  }
-  return value;
-};
-
 function startScheduling() {
   document.querySelector('#calendar').style.visibility = 'visible';
+}
+
+function updateConfirmButton() {
   document.querySelector('.start-app').style.visibility = 'visible';
 }
 
