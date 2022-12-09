@@ -133,4 +133,7 @@ function startApp() {
   console.log('in cover');
   console.log(schedule);
   window.open('app/app.html');
+  setTimeout(function () {
+    window.close();
+  }, 500);
 }
