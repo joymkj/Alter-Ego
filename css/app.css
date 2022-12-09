@@ -245,7 +245,7 @@ iframe {
   left: 30%;
   padding: 40px;
   padding-bottom: 10px;
-  background-color: rgba(0, 25, 42, 0.7);
+  background-color: rgba(0, 25, 42, 0.85);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -313,7 +313,7 @@ iframe {
 }
 
 .finish:hover {
-  background-color: rgba(123, 250, 235, 0.2);
+  background-color: rgba(123, 250, 235, 0.2) !important;
 }
 
 .restart {
@@ -333,7 +333,7 @@ iframe {
 }
 
 .restart:hover {
-  background-color: rgba(123, 250, 235, 0.2);
+  background-color: rgba(123, 250, 235, 0.2) !important;
 }
 
 .restart img {

@@ -13,7 +13,7 @@ let endTime = 0;
 let workScore = 1;
 let healthScore = 1;
 let schedule = [];
-let debug = true;
+let debug = false; //for internal testing
 
 let idleMediaQueryShrink = window.matchMedia('(max-width: 1600px)');
 let idleMediaQueryTablet = window.matchMedia('(max-width: 1500px)');
@@ -171,6 +171,7 @@ function startTask(task) {
 
 function endTask() {
   console.log('task Ended: ' + currentTask.title);
+  document.querySelector('.finish').innerText = 'End Day Early';
   if (document.querySelector('.popup').style.visibility == 'visible') {
     reduceHealth();
   }
@@ -210,6 +211,7 @@ function popupYes() {
   console.log('Task Accepted');
   schedule.shift();
   document.querySelector('.popup').style.visibility = 'hidden';
+  document.querySelector('.finish').innerText = 'Task Completed Early';
   console.log(schedule);
   if (currentTask && currentTask.calendarId == 'cal-work') {
     workEventsCompleted++;
@@ -354,14 +356,18 @@ function dayEnded() {
   localStorage.setItem('totalHealthEvents', totalHealthEvents);
   localStorage.setItem('totalWorkEvents', totalWorkEvents);
 
-  if (healthScore >= 0.5 && workScore >= 0.5) {
-    window.location.href = 'end-good.html';
-  } else if (healthScore < 0.5 && workScore < 0.5) {
-    window.location.href = 'end-low-health-work.html';
-  } else if (healthScore < 0.5) {
-    window.location.href = 'end-low-health.html';
-  } else if (workScore < 0.5) {
-    window.location.href = 'end-low-work.html';
+  if (document.querySelector('.finish').innerText == 'End Day Early') {
+    if (healthScore >= 0.5 && workScore >= 0.5) {
+      window.location.href = 'end-good.html';
+    } else if (healthScore < 0.5 && workScore < 0.5) {
+      window.location.href = 'end-low-health-work.html';
+    } else if (healthScore < 0.5) {
+      window.location.href = 'end-low-health.html';
+    } else if (workScore < 0.5) {
+      window.location.href = 'end-low-work.html';
+    }
+  } else if (document.querySelector('.finish').innerText == 'Task Completed Early') {
+    endTask();
   }
 
   document.querySelector('.time-to-end').innerText = 'Mission Over';
@@ -380,8 +386,8 @@ function accessibilityToggle() {
   } else {
     document.querySelector('#calendar').style.backgroundColor = 'rgba(0, 25, 42, 0.75)';
     document.querySelector('.clock').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
-    document.querySelector('.mission-info').style.backgroundColor = 'rgba(0, 25, 42, 0.6))';
-    document.querySelector('.popup').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
+    document.querySelector('.mission-info').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
+    document.querySelector('.popup').style.backgroundColor = 'rgba(0, 25, 42, 0.85)';
     document.querySelector('.finish').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
     document.querySelector('.restart').style.backgroundColor = 'rgba(0, 25, 42, 0.6)';
   }
@@ -389,7 +395,4 @@ function accessibilityToggle() {
 
 //TODO: add reflections in idle mode
 //desktop notif
-//fix health bar animation in that ending
 //remove debug=false
-//must have atleast one task
-//FIX WEDNESDAY
