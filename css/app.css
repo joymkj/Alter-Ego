@@ -402,14 +402,9 @@ iframe {
   z-index: 4;
   position: absolute;
   color: black;
+  background-color: rgba(0, 25, 42, 0.6);
   bottom: 20px;
   left: 40px;
-}
-
-.switch p {
-  margin-top: -15px;
-  margin-left: 40px;
-  line-height: 0;
 }
 
 .switch input[type='checkbox'] {
