@@ -243,6 +243,7 @@ function showIdleDisplay() {
   triggerFadeInAnimation();
   document.querySelector('.bgImg').style.visibility = 'visible';
   document.querySelector('.bgVid').style.visibility = 'hidden';
+  document.querySelector('.switch').style.visibility = 'visible';
   setIdleHealthBar();
 }
 
@@ -276,6 +277,7 @@ function setIdleHealthBar() {
 function showWorkDisplay() {
   triggerFadeInAnimation();
   document.querySelector('.bgImg').style.visibility = 'hidden';
+  document.querySelector('.switch').style.visibility = 'hidden';
   let videoDisplay = document.querySelector('.bgVid');
   videoDisplay.src = './../assets/work.mp4';
   videoDisplay.style.visibility = 'visible';
@@ -313,6 +315,7 @@ function setHealthBarDuringWork() {
 function showHealthDisplay() {
   triggerFadeInAnimation();
   document.querySelector('.bgImg').style.visibility = 'hidden';
+  document.querySelector('.switch').style.visibility = 'hidden';
   let videoDisplay = document.querySelector('.bgVid');
   videoDisplay.src = './../assets/health.mp4';
   videoDisplay.style.visibility = 'visible';
